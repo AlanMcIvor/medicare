@@ -1,10 +1,10 @@
 import React from "react";
 import Button from "../components/Button.jsx";
 
-const Welcome = () => {
+const Welcome = ({ handleGetStartedClick }) => {
   return (
     <>
-      <div className="img_container mx-auto bg-gray-100">
+      <div className="img_container mx-auto  bg-gray-100">
         <img
           className="mx-auto p-5"
           src="../assets/welcome.png"
@@ -22,7 +22,7 @@ const Welcome = () => {
         <h3 className="text-center text-2xl sm:text-5xl">Hospital Services</h3>
       </div>
       <div className="btn_container mt-10 text-center">
-        <Button page="Welcome" />
+        <Button page="Welcome" onClick={handleGetStartedClick} />
       </div>
     </>
   );
