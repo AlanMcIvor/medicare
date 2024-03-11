@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../components/Button.jsx";
 
 const Login = () => {
   return (
@@ -34,8 +33,15 @@ const Login = () => {
           id="username"
           placeholder="Password"
         />
-        <Button page="Login" />
       </form>
+      <div className="btn_container mt-10 text-center">
+        <button className="text-2xl bg-[#1C3925] text-white min-w-[250px] px-2 py-3 rounded-full shadow-lg font-body cursor-pointer hover:translate-y-2 transition-transform">
+          Login
+        </button>
+        <div className="forgot_password mt-2 text-blue-700 cursor-pointer">
+          Forgot Password?
+        </div>
+      </div>
     </>
   );
 };

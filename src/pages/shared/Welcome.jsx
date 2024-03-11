@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../components/Button.jsx";
 
 const Welcome = ({ handleGetStartedClick }) => {
   return (
@@ -12,7 +11,7 @@ const Welcome = ({ handleGetStartedClick }) => {
         />
       </div>
 
-      <div className="text_container flex flex-col mt-10 md:mt-5">
+      <div className="text_container flex flex-col mt-10 md:mt-5 font-heading">
         <div className="title_container text-4xl sm:text-6xl font-bold flex gap-5 justify-center items-center mt-20 mb-10">
           <h1>
             Medi<span className="text-[#758E7D]">Care</span>
@@ -22,7 +21,12 @@ const Welcome = ({ handleGetStartedClick }) => {
         <h3 className="text-center text-2xl sm:text-5xl">Hospital Services</h3>
       </div>
       <div className="btn_container mt-10 text-center">
-        <Button page="Welcome" onClick={handleGetStartedClick} />
+        <button
+          onClick={handleGetStartedClick}
+          className="text-2xl bg-[#1C3925] text-white min-w-[250px] px-2 py-3 rounded-full shadow-lg font-body cursor-pointer hover:translate-y-2 transition-transform"
+        >
+          Get Started
+        </button>
       </div>
     </>
   );

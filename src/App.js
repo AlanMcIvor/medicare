@@ -2,22 +2,24 @@ import "./App.css";
 import React, { useState } from "react";
 import Welcome from "./pages/shared/Welcome";
 import Login from "./pages/shared/Login";
+import ParentHome from "./pages/parent/ParentHome";
 
 function App() {
   const [showLoginPage, setShowLoginPage] = useState(false);
 
   const handleGetStartedClick = () => {
-    console.log("clicked");
     setShowLoginPage(true);
   };
 
   return (
     <div className="App">
-      {!showLoginPage ? (
+      {/* {!showLoginPage ? (
         <Welcome handleGetStartedClick={handleGetStartedClick} />
       ) : (
         <Login />
-      )}
+      )} */}
+
+      <ParentHome />
     </div>
   );
 }
