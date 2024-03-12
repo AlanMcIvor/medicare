@@ -4,7 +4,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 const Nav = () => {
   return (
     <>
-      <div className="container flex items-center justify-between mx-auto my-5 font-heading max-w-[685px]">
+      <div className=" sm:container flex items-center justify-around md:justify-between mx-5 md:mx-auto my-5 font-heading md:max-w-[685px]">
         <div className="nav_profile">
           <div className="nav_location text-[#1C3925] text-[18px]">
             Glasgow Childrens Hospital

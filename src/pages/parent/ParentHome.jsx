@@ -7,22 +7,20 @@ import { FiMessageSquare } from "react-icons/fi";
 import HorizontalCard from "../components/HorizontalCard";
 import DrCard from "../components/DrCard";
 import HistoryCard from "../components/HistoryCard";
+import Title from "../components/Title";
 
 const ParentHome = () => {
   return (
     <>
       <Nav />
       <div className="wrapper max-w-[685px] mx-auto">
-        <h1 className="app_heading text-center sm:text-6xl font-heading my-10 font-bold">
-          Welcome <span className="user_title_name text-[#91E3AA]">Jane</span>
-        </h1>
-        <p className="parent_alert text-center text-[34px] font-body">
-          Your child has an upcoming appointment with <br />
-          Dr Joe Bloggs in Radiology on{" "}
-          <span className="text-[#91E3AA]">Wed 2nd April</span>
-        </p>
+        <Title
+          name="Jane"
+          appointment="You have an appointment with Dr Bloggs in Radiology on"
+          date=" 12 Feb 2024"
+        />
 
-        <div className="home_card_container bg-gray-100 p-3 my-5 grid grid-cols-2 gap-5">
+        <div className="home_card_container bg-gray-100 p-3 my-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
           <HorizontalCard
             icon={<BiPlusMedical size={50} color="white" />}
             heading="Departments"
@@ -42,7 +40,7 @@ const ParentHome = () => {
         </div>
         <h3 className="text-[40px] font-body">Medical Team</h3>
 
-        <div className="dr_card_container bg-gray-100 p-3 my-5 grid grid-cols-3 gap-5">
+        <div className="dr_card_container bg-gray-100 p-3 my-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
           <DrCard
             profile="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="An image of a doctor"
@@ -101,7 +99,7 @@ const ParentHome = () => {
 
         <h3 className="text-[40px] font-body">Your History</h3>
 
-        <div className="history_container bg-gray-100 grid grid-cols-3 gap-3 p-3 my-5 font-body">
+        <div className="history_container bg-gray-100 grid sm:grid-cols-2 md:grid-cols-3 gap-3 p-3 my-5 font-body">
           <HistoryCard
             icon={<GiMedicines size={50} color="#42634C" />}
             type="Medicine"

@@ -6,7 +6,7 @@ import { CiClock1 } from "react-icons/ci";
 const HistoryCard = ({ icon, type, time, date }) => {
   return (
     <>
-      <div className="history_card flex items-center bg-white rounded-lg gap-3 max-w-[250px] p-1 shadow-lg">
+      <div className="history_card flex items-center bg-white rounded-lg gap-3 sm:max-w-[250px] p-1 shadow-lg">
         <div className="history_icon px-1">{icon}</div>
         <div>
           <h3 className="history_title text-[23px] text-center">{type}</h3>
