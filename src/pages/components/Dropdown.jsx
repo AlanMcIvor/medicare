@@ -22,23 +22,12 @@ const Dropdown = ({ icon, name, intro, subtitle, aside }) => {
       </div>
 
       {isOpen && (
-        <div className="dropdown_text_container bg-[#F1F3F7] mt-5 p-2 shadow-lg">
-          <p className="dropdown_intro">
-            Radiology is the branch of medicine specializing in of the use of
-            tests that take pictures or images of parts of the body to help
-            diagnose and treat disease. The Department of Radiology offers a
-            comprehensive range of diagnostic imaging and interventional
-            radiology services for children and young people up to 16 years of
-            age. Our department performs approximately 56,800 imaging procedures
-            every year.
-          </p>
-          <div className="container grid grid-cols-2 gap-2">
+        <div className="dropdown_text_container bg-[#F1F3F7] my-5 p-2 shadow-lg">
+          <p className="dropdown_intro">{intro}</p>
+          <div className="container grid grid-cols-2 gap-2 transition-all">
             <div className="aside">
-              <h4 className="text-2xl my-3">Why is Radiology Important?</h4>
-              <p>
-                Every Sector within health care relies <br />
-                on radiology, including:
-              </p>
+              <h4 className="text-2xl my-3">{subtitle}</h4>
+              <p>{aside}</p>
               <ul className="list-disc ml-8">
                 <li>Surgery</li>
                 <li>Peadeatrics</li>

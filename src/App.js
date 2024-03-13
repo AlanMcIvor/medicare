@@ -18,11 +18,11 @@ function App() {
         <Welcome handleGetStartedClick={handleGetStartedClick} />
       ) : (
         <Login />
-      )}
+      )} */}
 
-      <ParentHome /> */}
-
-      <PatientHome />
+      <ParentHome />
+      {/* 
+      <PatientHome /> */}
     </div>
   );
 }

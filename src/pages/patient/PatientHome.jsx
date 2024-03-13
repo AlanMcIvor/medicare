@@ -26,7 +26,51 @@ const PatientHome = () => {
           <Animation />
         </div>
 
-        <Dropdown name="Radiology" icon={<FaXRay size={50} color="white" />} />
+        <Dropdown
+          name="A bit about Radiology"
+          icon={<FaXRay size={50} color="white" />}
+          intro="Radiology is the branch of medicine specializing in of the use of tests that take pictures or images of parts of the body to help diagnose and treat disease. The Department of Radiology offers a comprehensive range of diagnostic imaging and interventional radiology services for children and young people up to 16 years of age. Our department performs approximately 56,800 imaging procedures every year."
+          subtitle="Why is Radiology important?"
+          aside="Every sector within health care relies on radiology, including:"
+        />
+
+        <h2 className="text-center mt-10 text-[30px] font-body">
+          Check out some of our free games
+        </h2>
+
+        <div className="games my-5 grid grid-cols-3 gap-5">
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/hey-duggee-the-picnic-badge-game">
+              <img src="../assets/game-1.png" alt="" />
+            </a>
+          </div>
+
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/danger-mouse-danger-dash">
+              <img src="../assets/game-2.png" alt="" />
+            </a>
+          </div>
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/my-world-kitchen-game?collection=free-cbeebies-games-for-kids">
+              <img src="../assets/game-3.png" alt="" />
+            </a>
+          </div>
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/swashbuckle-my-swashbuckle-adventure?collection=free-cbeebies-games-for-kids">
+              <img src="../assets/game-4.png" alt="" />
+            </a>
+          </div>
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/waffle-and-friends-game?collection=free-cbeebies-games-for-kids">
+              <img src="../assets/game-5.png" alt="" />
+            </a>
+          </div>
+          <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
+            <a href="https://www.bbc.co.uk/cbeebies/games/go-jetters-hero-academy?collection=free-cbeebies-games-for-kids">
+              <img src="../assets/game-6.png" alt="" />
+            </a>
+          </div>
+        </div>
       </div>
     </>
   );
