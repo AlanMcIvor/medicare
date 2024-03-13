@@ -6,10 +6,56 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
-.animation_container {
+/* .animation_container {
   background-image: url("../public/assets/reception.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
+} */
+
+.animation_container {
+  position: relative;
+  width: 100%;
+}
+
+.animation_container.show-images .overlay_image {
+  opacity: 1; /* Visible when .show-images class is applied to .image-container */
+}
+
+.background_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.overlay_image {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.adult {
+  left: 30%;
+}
+.kid {
+  max-height: 245px;
+  left: 40%;
+  top: 55%;
+}
+
+.overlay_image.fade_in {
+  opacity: 1;
+}
+
+.toggle_button {
+  position: absolute;
+  background: #000;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 55px;
 }

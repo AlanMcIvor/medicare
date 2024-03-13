@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Title from "../components/Title";
+import Animation from "../components/Animation/Animation";
 
 const PatientHome = () => {
   return (
@@ -21,7 +22,7 @@ const PatientHome = () => {
 
         <div className="animation_container">
           <div className="min-h-[250px] aspect-square">
-            <p></p>
+            <Animation />
           </div>
         </div>
       </div>
