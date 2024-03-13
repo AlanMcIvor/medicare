@@ -1,7 +1,9 @@
 import React from "react";
 import Nav from "../components/Nav";
 import Title from "../components/Title";
-import Animation from "../components/Animation/Animation";
+import Animation from "../components/Animation";
+import Dropdown from "../components/Dropdown";
+import { FaXRay } from "react-icons/fa6";
 
 const PatientHome = () => {
   return (
@@ -21,10 +23,10 @@ const PatientHome = () => {
         </h4>
 
         <div className="animation_container">
-          <div className="min-h-[250px] aspect-square">
-            <Animation />
-          </div>
+          <Animation />
         </div>
+
+        <Dropdown name="Radiology" icon={<FaXRay size={50} color="white" />} />
       </div>
     </>
   );
