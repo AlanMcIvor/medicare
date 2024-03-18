@@ -1,6 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  // const [email, setEmail] = useState();
+  // const [password, setPassword] = useState();
+  // const navigate = useNavigate();
+
+  // /* This line declares a constant named handleSubmit, which is a
+  // function that takes one parameter, e, representing an event object. */
+  // const handleSubmit = (e) => {
+  //   /* This line prevents the default behavior of form submission, which is to reload the page. */
+  //   e.preventDefault();
+  //   /*This line sends a POST request to the specified URL  */
+  //   axios
+  //     .post("", { email, password })
+  //     .then((result) => {
+  //       console.log(result);
+  //       if (result.data === "Success") {
+  //         navigate("/home");
+  //       } else {
+  //         navigate("/login");
+  //         alert("Incorrect login details");
+  //       }
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
   return (
     <>
       <div className="img_container mx-auto  bg-gray-100">
