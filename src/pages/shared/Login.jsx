@@ -26,15 +26,11 @@ const Login = () => {
         </h1>
         <h1>Connect</h1>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        action=""
-        className="text-center text-[26px] flex flex-col gap-5 items-center justify-center"
-      >
+      <form className="text-center text-[26px] flex flex-col gap-5 items-center justify-center">
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
           type="email"
-          id="username"
+          id="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
@@ -42,16 +38,18 @@ const Login = () => {
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
           type="password"
-          id="username"
+          id="password"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
       </form>
       <div className="btn_container mt-10 text-center">
-        <button className="text-2xl bg-[#1C3925] text-white min-w-[250px] px-2 py-3 rounded-full shadow-lg font-body cursor-pointer hover:translate-y-2 transition-transform">
-          Login
-        </button>
+        <input
+          onClick={handleSubmit}
+          type="submit"
+          className="text-2xl bg-[#1C3925] text-white min-w-[250px] px-2 py-3 rounded-full shadow-lg font-body cursor-pointer hover:translate-y-2 transition-transform"
+        />
         <div className="forgot_password mt-2 text-blue-700 cursor-pointer">
           Forgot Password?
         </div>
