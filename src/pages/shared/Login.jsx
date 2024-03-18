@@ -1,32 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
-  // const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  // /* This line declares a constant named handleSubmit, which is a
-  // function that takes one parameter, e, representing an event object. */
-  // const handleSubmit = (e) => {
-  //   /* This line prevents the default behavior of form submission, which is to reload the page. */
-  //   e.preventDefault();
-  //   /*This line sends a POST request to the specified URL  */
-  //   axios
-  //     .post("", { email, password })
-  //     .then((result) => {
-  //       console.log(result);
-  //       if (result.data === "Success") {
-  //         navigate("/home");
-  //       } else {
-  //         navigate("/login");
-  //         alert("Incorrect login details");
-  //       }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    console.log(email, password);
+  };
 
   return (
     <>
@@ -45,20 +27,25 @@ const Login = () => {
         <h1>Connect</h1>
       </div>
       <form
+        onSubmit={handleSubmit}
         action=""
         className="text-center text-[26px] flex flex-col gap-5 items-center justify-center"
       >
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
-          type="text"
+          type="email"
           id="username"
-          placeholder="Email/Patient Number"
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
           type="password"
           id="username"
           placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
         />
       </form>
       <div className="btn_container mt-10 text-center">
