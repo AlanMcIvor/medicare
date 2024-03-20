@@ -87,6 +87,19 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           value={password}
         />
+
+        <label
+          htmlFor="parentStatus"
+          className="flex items-center gap-2 items-center"
+        >
+          Parent/Gaurdian?
+          <input
+            type="checkbox"
+            id="parentStatus"
+            name="parentStatus"
+            value="parentStatus"
+          />
+        </label>
       </form>
       <div className="btn_container mt-10 text-center">
         <input
