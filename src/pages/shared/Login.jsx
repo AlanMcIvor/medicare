@@ -12,7 +12,7 @@ const Login = () => {
   const handleLogin = async () => {
     // make a post request to the login endpoint witrh patient number and password
     try {
-      const response = await axios.post("http://localhost:3000/api/Login", {
+      const response = await axios.post("http://localhost:5000/api/login", {
         patientNumber,
         password,
       });
@@ -88,10 +88,7 @@ const Login = () => {
           value={password}
         />
 
-        <label
-          htmlFor="parentStatus"
-          className="flex items-center gap-2 items-center"
-        >
+        <label htmlFor="parentStatus" className="flex items-center gap-2">
           Parent/Gaurdian?
           <input
             type="checkbox"

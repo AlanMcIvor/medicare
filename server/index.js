@@ -35,25 +35,27 @@ mongoose.connection.on("connected", () => {
 });
 
 // route to handle fetching user data
-app.get('/api/users', async (req, res) => {
+app.get("/api/users", async (req, res) => {
   try {
     //extract the token from the request headers
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {
-      return res.status(401).json({ error: 'Unauthorised: no token provided' });
+      return res.status(401).json({ error: "Unauthorised: no token provided" });
     }
 
     // verify token
-    jwt.verify(token, 'your-secret-key', async (err, decoded) => {
+    jwt.verify(token, "your-secret-key", async (err, decoded) => {
       if (err) {
-        return res.status(401).json({ error: 'unauthorized: invalid token' });
+        return res.status(401).json({ error: "unauthorized: invalid token" });
       }
       // find user by decoded userId and populate associated deoartment details
-      const user = await User.findById(decoded.userId).populate('department_id');
+      const user = await User.findById(decoded.userId).populate(
+        "department_id"
+      );
 
       if (!user) {
-        return res.status(404).json({ error: 'User not found' });
+        return res.status(404).json({ error: "User not found" });
       }
 
       // return formated user data
@@ -69,22 +71,73 @@ app.get('/api/users', async (req, res) => {
         patient_number: user.patient_number,
         appoitment_date: user.appoitment_date,
         appoitment_notes: user.appointment_notes,
-        department_id: user.department_id ? {
-          name: user.department_id.name,
-          details: user.department_id.details,
-          consultant: user.department_id.consultant,
-          nurse: user.department_id.nurse,
-          consultant_img: user.department_id.consultant_img,
-          nurse_img: user.department_id.nurse_img,
-          img_one: user.department_id.img_one,
-          img_two: user.department_id.img_two,
-          img_three: user.department_id.img_three,
-          map: user.department_id.map,
-        } : null,
+        department_id: user.department_id
+          ? {
+              name: user.department_id.name,
+              details: user.department_id.details,
+              consultant: user.department_id.consultant,
+              nurse: user.department_id.nurse,
+              consultant_img: user.department_id.consultant_img,
+              nurse_img: user.department_id.nurse_img,
+              img_one: user.department_id.img_one,
+              img_two: user.department_id.img_two,
+              img_three: user.department_id.img_three,
+              map: user.department_id.map,
+            }
+          : null,
       };
-    })
+
+      // send formated user data as json response
+      res.json(formatedUser);
+    });
+  } catch (error) {
+    // log any errors
+    console.log(error);
+    // send error response
+    res.status(500).json({ error: "internal server error" });
   }
-})
+});
+
+// route to handle patient login
+app.post("/api/Login", async (req, res) => {
+  try {
+    // extract patient numver and password from request body
+    const { patientNumber, password } = req.body;
+    // find user by patient number
+    const user = await User.findOne({ patientNumber });
+
+    if (!user) {
+      return res
+        .status(401)
+        .json({ error: "Invalid patient number or password" });
+    }
+
+    // compare hashed passwords
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if (!passwordMatch) {
+      return res
+        .status(401)
+        .json({ error: "Invalid patient number or password" });
+    }
+
+    // create JWT token with user id payload
+    const tokenPayload = {
+      userId: user._id,
+    };
+    // sign token with secret key and set expiration time
+    const token = jwt.sign(tokenPayload, "your-secret-key", {
+      expiresIn: "1h",
+    });
+
+    // send token as json response
+    res.json({ token });
+  } catch (error) {
+    // log any errors
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
