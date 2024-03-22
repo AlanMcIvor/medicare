@@ -99,7 +99,7 @@ app.get("/api/users", async (req, res) => {
 });
 
 // route to handle patient login
-app.post("/api/Login", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   try {
     // extract patient numver and password from request body
     const { patientNumber, password } = req.body;

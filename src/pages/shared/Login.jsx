@@ -3,55 +3,37 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const [email, setEmail] = useState("");
   const [patientNumber, setPatientNumber] = useState("");
   const [password, setPassword] = useState("");
   const [parent, setParent] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
-    // make a post request to the login endpoint witrh patient number and password
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
         patientNumber,
         password,
       });
 
-      //if login is succesful, log a messege and the token recieved from teh server
       console.log("Login Successful");
       console.log("Token: ", response.data.token);
 
-      // save token to local storage
       localStorage.setItem("token", response.data.token);
-      // save patient num to local storage
       localStorage.setItem("patientNum", response.data.patientNumber);
-      // save parent state to local storage
-      if (parent) {
-        localStorage.setItem("parent", true);
-      } else {
-        localStorage.removeItem("parent");
-      }
+      localStorage.setItem("parent", parent);
 
-      // if user is parent, redirect to the parent dashboard
-      if (parent) {
-        navigate("/ParentHome");
-      } else {
-        navigate("/PatientHome");
-      }
+      navigate(parent ? "/ParentHome" : "/PatientHome");
     } catch (error) {
-      // if login fails, log the error messaage
       alert("Login Failed: invalid username or password");
       console.error("Login Failed:", error.response.data.error);
     }
   };
 
-  // load parent state from local storage
   useEffect(() => {
-    // get parent state from local storage
     const storedParent = localStorage.getItem("parent");
-    // if parent true set to true
     if (storedParent) {
-      setParent(true);
+      const parsedParent = JSON.parse(storedParent);
+      setParent(parsedParent);
     }
   }, []);
 
@@ -95,7 +77,8 @@ const Login = () => {
             type="checkbox"
             id="parentStatus"
             name="parentStatus"
-            value="parentStatus"
+            onChange={(e) => setParent(e.target.checked)}
+            value={parent}
           />
         </label>
       </form>
