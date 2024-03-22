@@ -40,6 +40,7 @@ const Login = () => {
       }
     } catch (error) {
       // if login fails, log the error messaage
+      alert("Login Failed: invalid username or password");
       console.error("Login Failed:", error.response.data.error);
     }
   };
