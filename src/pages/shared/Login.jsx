@@ -88,7 +88,7 @@ const Login = () => {
           type="submit"
           className="text-2xl bg-[#1C3925] text-white min-w-[250px] px-2 py-3 rounded-full shadow-lg font-body cursor-pointer hover:translate-y-2 transition-transform"
         />
-        <div className="forgot_password mt-2 text-blue-700 cursor-pointer">
+        <div className="forgot_password my-2 text-blue-700 cursor-pointer">
           Forgot Password?
         </div>
       </div>

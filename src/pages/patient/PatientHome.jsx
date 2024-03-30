@@ -19,7 +19,8 @@ const PatientHome = () => {
         </div>
 
         <h4 className="text-center mt-10 text-[30px] font-body">
-          What to expect at your appointment
+          What to expect at your appointment <br />
+          <span className="text-[18px]">(hover on the images)</span>
         </h4>
 
         <div className="animation_container">
