@@ -11,8 +11,8 @@ const Animation = () => {
             src="../assets/kid.png"
             alt=""
           />
-          <div class="absolute top-20 right-2 px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 inline-flex opacity-0 group-hover:opacity-100 transition-opacity ease-in delay-500">
-            Arrive at hospital
+          <div class="absolute top-20 right-1 px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 inline-flex opacity-0 group-hover:opacity-100 transition-opacity ease-in delay-500">
+            1. Arrive at hospital
           </div>
         </div>
         <div className="second relative group">
@@ -23,7 +23,7 @@ const Animation = () => {
             alt=""
           />
           <div class="absolute top-5 right-2 px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 inline-flex opacity-0 group-hover:opacity-100 transition-opacity ease-in delay-500">
-            Get checked in
+            2. Get checked in
           </div>
         </div>
         <div className="third relative group">
@@ -34,7 +34,7 @@ const Animation = () => {
             alt=""
           />
           <div class="absolute top-10 right-2 px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 inline-flex opacity-0 group-hover:opacity-100 transition-opacity ease-in delay-500">
-            Get your x-ray
+            3. Get your x-ray
           </div>
         </div>
       </div>

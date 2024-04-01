@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 
-const Dropdown = ({ icon, name, intro, subtitle, aside }) => {
+const Dropdown = ({ icon, name, intro, subtitle, aside, imgPath, imgAlt }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -39,7 +39,7 @@ const Dropdown = ({ icon, name, intro, subtitle, aside }) => {
               </ul>
             </div>
             <div className="dropdown_container_img">
-              <img src="./assets/child_xray.png" alt="" />
+              <img src={imgPath} alt={imgAlt} />
               <a href="#" className="text-center mx-auto">
                 Youtube
               </a>

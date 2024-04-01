@@ -1,5 +1,5 @@
 import React from "react";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { GiHospitalCross } from "react-icons/gi";
 
 const Nav = () => {
   return (
@@ -18,8 +18,8 @@ const Nav = () => {
             />
           </div>
         </div>
-        <div className="hamburger cursor-pointer">
-          <RxHamburgerMenu size={50} />
+        <div className="hamburger">
+          <GiHospitalCross size={50} />
         </div>
       </div>
     </>
