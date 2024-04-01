@@ -1,6 +1,6 @@
 import "./App.css";
-import React, { useState } from "react";
-import Department from "./pages/shared/Departments";
+import Department from "./pages/parent/Departments";
+import Medication from "./pages/parent/Medication";
 // import {
 //   BrowserRouter as Router,
 //   Route,
@@ -16,7 +16,8 @@ import Department from "./pages/shared/Departments";
 function App() {
   return (
     <>
-      <Department />
+      <Medication />
+      {/* <Department /> */}
       {/* <Router>
         <Routes>
           <Route path="/" element={<PatientHome />} />
