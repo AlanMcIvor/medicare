@@ -33,6 +33,15 @@ const PatientHome = () => {
           intro="Radiology is the branch of medicine specializing in of the use of tests that take pictures or images of parts of the body to help diagnose and treat disease. The Department of Radiology offers a comprehensive range of diagnostic imaging and interventional radiology services for children and young people up to 16 years of age. Our department performs approximately 56,800 imaging procedures every year."
           subtitle="Why is Radiology important?"
           aside="Every sector within health care relies on radiology, including:"
+          listItems={[
+            "Surgery",
+            "Peadeatrics",
+            "Obsterics",
+            "Oncology",
+            "Trauma-response",
+            "Emergency Medicine",
+            "Infectious Diseases",
+          ]}
         />
 
         <h2 className="text-center mt-10 text-[30px] font-body">

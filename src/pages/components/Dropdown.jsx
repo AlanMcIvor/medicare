@@ -1,7 +1,16 @@
 import React, { useState } from "react";
 import { FaRegArrowAltCircleDown } from "react-icons/fa";
 
-const Dropdown = ({ icon, name, intro, subtitle, aside, imgPath, imgAlt }) => {
+const Dropdown = ({
+  icon,
+  name,
+  intro,
+  subtitle,
+  aside,
+  imgPath,
+  imgAlt,
+  listItems,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -29,18 +38,14 @@ const Dropdown = ({ icon, name, intro, subtitle, aside, imgPath, imgAlt }) => {
               <h4 className="text-2xl my-3">{subtitle}</h4>
               <p>{aside}</p>
               <ul className="list-disc ml-8">
-                <li>Surgery</li>
-                <li>Peadeatrics</li>
-                <li>Obsterics</li>
-                <li>Oncology</li>
-                <li>Trauma-response</li>
-                <li>Emergency Medicine</li>
-                <li>Infectious Diseases</li>
+                {listItems.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
               </ul>
             </div>
             <div className="dropdown_container_img">
               <img src={imgPath} alt={imgAlt} />
-              <a href="#" className="text-center mx-auto">
+              <a href="#" className="text-center mx-auto text-blue-600">
                 Youtube
               </a>
             </div>
