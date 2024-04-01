@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from "react";
 
-const NHS_API_URL = "https://api.nhs.uk/medicines/";
+const NHS_API_URL = "https://api.nhs.uk/conditions/";
 const SUBSCRIPTION_KEY = "a42f6bb4139c44e39006d6e39fef4700";
 
-function App() {
+function Conditions() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [medicationData, setMedicationData] = useState(null);
+  const [conditionData, setConditionData] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${NHS_API_URL}?search=${searchTerm}`, {
+        const response = await fetch(`${NHS_API_URL}${searchTerm}`, {
           headers: {
             "subscription-key": SUBSCRIPTION_KEY,
           },
         });
         const data = await response.json();
-        setMedicationData(data);
+        setConditionData(data);
       } catch (error) {
-        console.error("Error fetching medication data:", error);
+        console.error("Error fetching condition data:", error);
       }
     };
 
     if (searchTerm.trim() !== "") {
       fetchData();
     } else {
-      setMedicationData(null);
+      setConditionData(null);
     }
-  }, [searchTerm]);
+  }, [searchTerm, setSearchTerm]); // Added setSearchTerm as a dependency
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -35,26 +35,21 @@ function App() {
 
   return (
     <div>
-      <h1>Medication Search</h1>
+      <h1>Condition Search</h1>
       <input
         type="text"
         value={searchTerm}
         onChange={handleInputChange}
-        placeholder="Enter a medication"
+        placeholder="Enter a condition"
       />
       <br />
-      {medicationData && medicationData.total > 0 ? (
-        <div>
-          <h2>{medicationData.results[0].name}</h2>
-          <p>{medicationData.results[0].description}</p>
-          <p>{medicationData.results[0].description}</p>
-          <p>{medicationData.results}</p>
-        </div>
+      {conditionData && conditionData.description ? (
+        <p>{conditionData.description}</p>
       ) : (
-        <p>No medication data available.</p>
+        <p>No condition data available.</p>
       )}
     </div>
   );
 }
 
-export default App;
+export default Conditions;

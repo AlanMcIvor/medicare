@@ -1,6 +1,6 @@
 import "./App.css";
 import Department from "./pages/parent/Departments";
-import Medication from "./pages/parent/Medication";
+import Conditions from "./pages/parent/Medication";
 // import {
 //   BrowserRouter as Router,
 //   Route,
@@ -16,7 +16,7 @@ import Medication from "./pages/parent/Medication";
 function App() {
   return (
     <>
-      <Medication />
+      <Conditions />
       {/* <Department /> */}
       {/* <Router>
         <Routes>
