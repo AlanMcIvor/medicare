@@ -47,6 +47,8 @@ function App() {
         <div>
           <h2>{medicationData.results[0].name}</h2>
           <p>{medicationData.results[0].description}</p>
+          <p>{medicationData.results[0].description}</p>
+          <p>{medicationData.results}</p>
         </div>
       ) : (
         <p>No medication data available.</p>
