@@ -23,7 +23,8 @@ app.use(express.json());
 app.use(cors());
 
 // connecting to the database
-const MONGO_URI = process.env.MONGO_URI;
+const MONGO_URI =
+  "mongodb+srv://alanmcivor27:RsaZogIHcT4gYj1q@hospitalportal.a5ixj4i.mongodb.net/hospitalPortal?retryWrites=true&w=majority&appName=hospitalPortal";
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -35,7 +36,7 @@ mongoose.connection.on("connected", () => {
 });
 
 // route to handle fetching user data
-app.get("/api/users", async (req, res) => {
+app.get("/login", async (req, res) => {
   try {
     //extract the token from the request headers
     const token = req.headers.authorization?.split(" ")[1];
@@ -68,7 +69,7 @@ app.get("/api/users", async (req, res) => {
         guardian_name: user.guardian_name,
         notes: user.notes,
         dob: user.dob,
-        patient_number: user.patient_number,
+        patient_number: user.patientNumber,
         appoitment_date: user.appoitment_date,
         appoitment_notes: user.appointment_notes,
         department_id: user.department_id

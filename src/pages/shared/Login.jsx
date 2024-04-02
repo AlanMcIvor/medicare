@@ -24,7 +24,7 @@ const Login = () => {
 
       navigate(parent ? "/ParentHome" : "/PatientHome");
     } catch (error) {
-      alert("Login Failed: invalid username or password");
+      alert("Login Failed: invalid patient number or password");
       console.error("Login Failed:", error.response.data.error);
     }
   };
@@ -56,7 +56,7 @@ const Login = () => {
       <form className="text-center text-[26px] flex flex-col gap-5 items-center justify-center">
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
-          type="string"
+          type="number"
           id="patientNumber"
           placeholder="Patient Number"
           onChange={(e) => setPatientNumber(e.target.value)}
