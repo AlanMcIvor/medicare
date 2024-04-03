@@ -20,7 +20,7 @@ const PatientHome = () => {
 
         <h4 className="text-center mt-10 text-[30px] font-body">
           What to expect at your appointment <br />
-          <span className="text-[18px]">(hover on the images)</span>
+          <span className="text-[18px]">(hover over the images)</span>
         </h4>
 
         <div className="animation_container">
@@ -42,6 +42,8 @@ const PatientHome = () => {
             "Emergency Medicine",
             "Infectious Diseases",
           ]}
+          imgPath="./assets/xray.png"
+          imgAlt="An illustration of three children with their xrays"
         />
 
         <h2 className="text-center mt-10 text-[30px] font-body">
