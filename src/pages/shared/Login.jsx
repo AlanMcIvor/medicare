@@ -71,7 +71,7 @@ const Login = () => {
         />
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
-          type="string"
+          type="password"
           id="string"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
@@ -79,7 +79,7 @@ const Login = () => {
         />
 
         <label htmlFor="parentStatus" className="flex items-center gap-2">
-          Parent/Gaurdian?
+          Parent/Guardian?
           <input
             type="checkbox"
             id="parentStatus"

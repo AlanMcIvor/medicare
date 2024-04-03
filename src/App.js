@@ -10,12 +10,11 @@ import PatientHome from "./pages/patient/PatientHome";
 function App() {
   return (
     <BrowserRouter>
-      <Login />
-      {/* <Department /> */}
       <Routes>
-        <Route path="/" element={<PatientHome />} />
+        <Route path="/" element={<Login />} />
         <Route path="/ParentHome" element={<ParentHome />} />
         <Route path="/PatientHome" element={<PatientHome />} />
+        <Route path="/Departments" element={<Department />} />
       </Routes>
     </BrowserRouter>
   );

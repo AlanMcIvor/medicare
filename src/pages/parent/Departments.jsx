@@ -4,6 +4,7 @@ import Dropdown from "../components/Dropdown";
 import { FaXRay } from "react-icons/fa6";
 import { MdPermScanWifi } from "react-icons/md";
 import { FaBriefcaseMedical } from "react-icons/fa6";
+;
 
 const Department = () => {
   return (
