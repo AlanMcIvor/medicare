@@ -28,8 +28,8 @@ const ParentHome = () => {
           />
           <HorizontalCard
             icon={<GiMedicines size={50} color="white" />}
-            heading="Medicine"
-            destination="/Medicine"
+            heading="Conditions"
+            destination="/Conditions"
           />
           <HorizontalCard
             icon={<BiSolidInjection size={50} color="white" />}
