@@ -8,24 +8,31 @@ const Login = () => {
   const [parent, setParent] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    console.log("Making login request with:", { patientNumber, password });
     try {
       const response = await axios.post("http://localhost:5000/api/login", {
         patientNumber,
         password,
       });
+      // Handle successful login
+      const { token } = response.data;
+      localStorage.setItem("authToken", token);
 
-      console.log("Login Successful");
-      console.log("Token: ", response.data.token);
-
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("patientNum", response.data.patientNumber);
-      localStorage.setItem("parent", parent);
-
-      navigate(parent ? "/ParentHome" : "/PatientHome");
+      if (parent) {
+        navigate("/ParentHome");
+      } else {
+        navigate("/PatientHome");
+      }
     } catch (error) {
-      alert("Login Failed: invalid patient number or password");
-      console.error("Login Failed:", error.response.data.error);
+      if (error.response && error.response.status === 401) {
+        console.error("Login failed: Invalid credentials");
+        // Handle unauthorized access
+      } else {
+        console.error("Login failed:", error.message);
+        // Handle other errors
+      }
     }
   };
 
@@ -56,7 +63,7 @@ const Login = () => {
       <form className="text-center text-[26px] flex flex-col gap-5 items-center justify-center">
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
-          type="number"
+          type="string"
           id="patientNumber"
           placeholder="Patient Number"
           onChange={(e) => setPatientNumber(e.target.value)}
@@ -64,8 +71,8 @@ const Login = () => {
         />
         <input
           className="border rounded-lg shadow-md min-w-[500px] p-2 text-left"
-          type="password"
-          id="password"
+          type="string"
+          id="string"
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}

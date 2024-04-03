@@ -1,28 +1,29 @@
-// express is used for bulding web server
 const express = require("express");
-// moongoose is used for interacting with mongoDB
 const mongoose = require("mongoose");
-// cors is used for handling cros origin resource sharing in web applications
 const cors = require("cors");
-// library for password hashing
-const bcrypt = require("bcryptjs");
-// json web token library for user authentication
+const allowedOrigins = ["http://localhost:3000"];
+// const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
-// dotenv file for storing sensitive data
-require("dotenv").config();
-// import user model
-const User = require("./models/User");
-// import department model
 
-// create an express app and defin the port
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// setting up middleware
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(cors());
 
-// connecting to the database
+app._router.stack.forEach(function (r) {
+  if (r.route && r.route.path) {
+    console.log(r.route.path, r.route.stack[0].name);
+  }
+});
+// MongoDB connection
+// const MONGO_URI = 'mongodb+srv://karenmd:uC0CJVexilB0iGFK@cluster0.jz6h4uo.mongodb.net/portal?retryWrites=true&w=majority';
+
 const MONGO_URI =
   "mongodb+srv://alanmcivor27:RsaZogIHcT4gYj1q@hospitalportal.a5ixj4i.mongodb.net/hospitalPortal?retryWrites=true&w=majority&appName=hospitalPortal";
 mongoose.connect(MONGO_URI, {
@@ -30,114 +31,206 @@ mongoose.connect(MONGO_URI, {
   useUnifiedTopology: true,
 });
 
-// event handling for connection
 mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-// route to handle fetching user data
-app.get("/login", async (req, res) => {
+// User model
+const User = mongoose.model("User", {
+  forename: String,
+  surname: String,
+  department: String,
+  email: String,
+  password: String,
+  dob: Date,
+  patientNumber: String,
+  nextOfKin: String,
+  nextOfKinName: String,
+});
+
+// Register route
+app.post("/api/register", async (req, res) => {
   try {
-    //extract the token from the request headers
+    const { patientNumber, password } = req.body;
+
+    // Check if the email already exists
+    const existingUser = await User.findOne({ patientNumber });
+    if (existingUser) {
+      return res.status(400).json({ error: "Email already registered" });
+    }
+
+    // Hash the password before saving it to the database
+    // const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user instance and save it to the 'users' collection
+    const newUser = new User({ patientNumber, password });
+    await newUser.save();
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// ...
+
+app.get("/api/users", async (req, res) => {
+  try {
+    // Extract the token from the request headers
     const token = req.headers.authorization?.split(" ")[1];
 
     if (!token) {
-      return res.status(401).json({ error: "Unauthorised: no token provided" });
+      return res.status(401).json({ error: "Unauthorized: No token provided" });
     }
 
-    // verify token
+    // Verify the token
     jwt.verify(token, "your-secret-key", async (err, decoded) => {
       if (err) {
-        return res.status(401).json({ error: "unauthorized: invalid token" });
+        return res.status(401).json({ error: "Unauthorized: Invalid token" });
       }
-      // find user by decoded userId and populate associated deoartment details
-      const user = await User.findById(decoded.userId).populate(
-        "department_id"
-      );
+
+      // The decoded.userId should match the structure used in jwt.sign during login
+      const user = await User.findById(decoded.userId);
 
       if (!user) {
         return res.status(404).json({ error: "User not found" });
       }
 
-      // return formated user data
-      const formatedUser = {
+      // Return data only for the authenticated user
+      // Inside the /api/users route
+      const formattedUser = {
         _id: user._id,
         email: user.email,
-        forename: user.forname,
+        forename: user.forename,
         surname: user.surname,
-        guardian: user.guardian,
-        guardian_name: user.guardian_name,
-        notes: user.notes,
+        department: user.department,
         dob: user.dob,
-        patient_number: user.patientNumber,
-        appoitment_date: user.appoitment_date,
-        appoitment_notes: user.appointment_notes,
-        department_id: user.department_id
-          ? {
-              name: user.department_id.name,
-              details: user.department_id.details,
-              consultant: user.department_id.consultant,
-              nurse: user.department_id.nurse,
-              consultant_img: user.department_id.consultant_img,
-              nurse_img: user.department_id.nurse_img,
-              img_one: user.department_id.img_one,
-              img_two: user.department_id.img_two,
-              img_three: user.department_id.img_three,
-              map: user.department_id.map,
-            }
-          : null,
+        patientNumber: user.patientNumber,
+        // Add any additional fields you want to include
       };
 
-      // send formated user data as json response
-      res.json(formatedUser);
+      res.json(formattedUser);
     });
   } catch (error) {
-    // log any errors
-    console.log(error);
-    // send error response
-    res.status(500).json({ error: "internal server error" });
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 
-// route to handle patient login
+// app.get('/api/patients', async (req, res) => {
+//   try {
+//     // Fetch all patients from the User collection
+//     const patients = await User.find();
+
+//     // Map the users to include only the desired information
+//     const formattedPatients = patients.map((patient) => ({
+//       _id: patient._id,
+//       email: patient.email,
+//       forename: patient.forename,
+//       surname: patient.surname,
+//       department: patient.department,
+//       is_admin: patient.is_admin,
+//       guardian: patient.guardian, // Add this line
+//       guardian_name: patient.guardian_name,
+//       notes: patient.notes,
+//       dob: patient.dob,
+
+//       // Add any additional fields you want to include
+//     }));
+
+//     res.json(formattedPatients);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// });
+// Login route
+// app.post('/api/login', async (req, res) => {
+//   try {
+//     const { email, password } = req.body;
+//     const user = await User.findOne({ email });
+
+//     if (!user) {
+//       return res.status(401).json({ error: 'Invalid email or password' });
+//     }
+
+//     const passwordMatch = await bcrypt.compare(password, user.password);
+
+//     if (!passwordMatch) {
+//       return res.status(401).json({ error: 'Invalid email or password' });
+//     }
+
+//     const token = jwt.sign({ userId: user._id }, 'your-secret-key', {
+//       expiresIn: '1h',
+//     });
+
+//     res.json({ token });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: 'Internal server error' });
+//   }
+// });
+// Login route
+// Inside the /api/login route
 app.post("/api/login", async (req, res) => {
   try {
-    // extract patient numver and password from request body
+    console.log("Request body:", req.body);
     const { patientNumber, password } = req.body;
-    // find user by patient number
-    const user = await User.findOne({ patientNumber });
+
+    console.log("Received patientNumber:", patientNumber);
+    console.log("Received password:", password);
+
+    console.log("Before user check");
+    const user = await User.findOne({ patientNumber: patientNumber });
+    console.log("Retrieved user:", user);
+
+    if (user) {
+      console.log("Found user:", user);
+    } else {
+      console.log("User not found");
+    }
 
     if (!user) {
       return res
         .status(401)
-        .json({ error: "Invalid patient number or password" });
+        .json({ error: "Invalid patientnumber or password" });
     }
 
-    // compare hashed passwords
-    const passwordMatch = await bcrypt.compare(password, user.password);
+    const passwordMatch = password === user.password;
+    console.log("Password match:", passwordMatch);
 
     if (!passwordMatch) {
       return res
         .status(401)
-        .json({ error: "Invalid patient number or password" });
+        .json({ error: "Invalid patient_number or password" });
     }
 
-    // create JWT token with user id payload
+    // Include is_admin in the token payload
     const tokenPayload = {
       userId: user._id,
+      // is_admin: user.is_admin
     };
-    // sign token with secret key and set expiration time
+
     const token = jwt.sign(tokenPayload, "your-secret-key", {
       expiresIn: "1h",
     });
 
-    // send token as json response
+    // Include is_admin in the response
     res.json({ token });
   } catch (error) {
-    // log any errors
-    console.log(error);
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Server is running");
+});
+
+app.use((err, req, res, next) => {
+  console.error("Error:", err);
+  res.status(500).json({ error: "Internal server error" });
 });
 
 app.listen(PORT, () => {
@@ -146,3 +239,5 @@ app.listen(PORT, () => {
 
 // ECOoFeXxrdNn0HHB
 // alanmcivor27
+
+// "mongodb+srv://alanmcivor27:RsaZogIHcT4gYj1q@hospitalportal.a5ixj4i.mongodb.net/hospitalPortal?retryWrites=true&w=majority&appName=hospitalPortal";

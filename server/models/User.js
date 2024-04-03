@@ -7,14 +7,11 @@ const userSchema = new mongoose.Schema({
   email: String,
   password: String,
   dob: Date,
-  patientNumber: Number,
+  patientNumber: String,
   nextOfKin: String,
   nextOfKinName: String,
-
-  department_id: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
-  appointment_notes: String,
 });
 
-const User = mongoose.model("User", userSchema);
+const Users = mongoose.model("Users", userSchema);
 
-module.exports = User;
+module.exports = Users;
