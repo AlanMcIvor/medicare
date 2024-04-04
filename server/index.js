@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
-// const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const app = express();
@@ -60,7 +60,7 @@ app.post("/api/register", async (req, res) => {
     }
 
     // Hash the password before saving it to the database
-    // const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create a new user instance and save it to the 'users' collection
     const newUser = new User({ patientNumber, password });
@@ -97,8 +97,6 @@ app.get("/api/users", async (req, res) => {
         return res.status(404).json({ error: "User not found" });
       }
 
-      // Return data only for the authenticated user
-      // Inside the /api/users route
       const formattedUser = {
         _id: user._id,
         email: user.email,
@@ -107,7 +105,6 @@ app.get("/api/users", async (req, res) => {
         department: user.department,
         dob: user.dob,
         patientNumber: user.patientNumber,
-        // Add any additional fields you want to include
       };
 
       res.json(formattedUser);
@@ -118,61 +115,6 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-// app.get('/api/patients', async (req, res) => {
-//   try {
-//     // Fetch all patients from the User collection
-//     const patients = await User.find();
-
-//     // Map the users to include only the desired information
-//     const formattedPatients = patients.map((patient) => ({
-//       _id: patient._id,
-//       email: patient.email,
-//       forename: patient.forename,
-//       surname: patient.surname,
-//       department: patient.department,
-//       is_admin: patient.is_admin,
-//       guardian: patient.guardian, // Add this line
-//       guardian_name: patient.guardian_name,
-//       notes: patient.notes,
-//       dob: patient.dob,
-
-//       // Add any additional fields you want to include
-//     }));
-
-//     res.json(formattedPatients);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal Server Error' });
-//   }
-// });
-// Login route
-// app.post('/api/login', async (req, res) => {
-//   try {
-//     const { email, password } = req.body;
-//     const user = await User.findOne({ email });
-
-//     if (!user) {
-//       return res.status(401).json({ error: 'Invalid email or password' });
-//     }
-
-//     const passwordMatch = await bcrypt.compare(password, user.password);
-
-//     if (!passwordMatch) {
-//       return res.status(401).json({ error: 'Invalid email or password' });
-//     }
-
-//     const token = jwt.sign({ userId: user._id }, 'your-secret-key', {
-//       expiresIn: '1h',
-//     });
-
-//     res.json({ token });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: 'Internal server error' });
-//   }
-// });
-// Login route
-// Inside the /api/login route
 app.post("/api/login", async (req, res) => {
   try {
     console.log("Request body:", req.body);

@@ -7,6 +7,7 @@ import Login from "./pages/shared/Login";
 import ParentHome from "./pages/parent/ParentHome";
 import PatientHome from "./pages/patient/PatientHome";
 import Procedures from "./pages/parent/Procedures";
+import Profile from "./pages/shared/Profile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Departments" element={<Department />} />
         <Route path="/Conditions" element={<Conditions />} />
         <Route path="/Procedures" element={<Procedures />} />
+        <Route path="/Profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
