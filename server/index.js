@@ -48,31 +48,21 @@ const User = mongoose.model("User", {
   nextOfKinName: String,
 });
 
-// Register route
-app.post("/api/register", async (req, res) => {
-  try {
-    const { patientNumber, password } = req.body;
-
-    // Check if the email already exists
-    const existingUser = await User.findOne({ patientNumber });
-    if (existingUser) {
-      return res.status(400).json({ error: "Email already registered" });
-    }
-
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create a new user instance and save it to the 'users' collection
-    const newUser = new User({ patientNumber, password });
-    await newUser.save();
-
-    res.status(201).json({ message: "User registered successfully" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
+const Department = mongoose.model("Department", {
+  consultant: String,
+  details: String,
+  department: String,
 });
 
+app.get("/department", async (req, res) => {
+  try {
+    const departments = await Department.find();
+    res.json(departments);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
 // ...
 
 app.get("/api/users", async (req, res) => {
@@ -105,6 +95,15 @@ app.get("/api/users", async (req, res) => {
         department: user.department,
         dob: user.dob,
         patientNumber: user.patientNumber,
+        appointmentDate: user.appointmentDate,
+        appointmentNotes: user.appointmentNotes,
+        department_id: user.department_id
+          ? {
+              consultant: user.department_id.consultant,
+              details: user.department_id.details,
+              department: user.department_id.department,
+            }
+          : null,
       };
 
       res.json(formattedUser);

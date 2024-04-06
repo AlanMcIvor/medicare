@@ -18,7 +18,7 @@ const Login = () => {
       });
       // Handle successful login
       const { token } = response.data;
-      localStorage.setItem("authToken", token);
+      localStorage.setItem("Token", token);
 
       if (parent) {
         navigate("/ParentHome");
@@ -28,9 +28,11 @@ const Login = () => {
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.error("Login failed: Invalid credentials");
+        alert("Login failed: Invalid credentials");
         // Handle unauthorized access
       } else {
         console.error("Login failed:", error.message);
+        alert("Login failed:", error.message);
         // Handle other errors
       }
     }

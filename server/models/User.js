@@ -10,6 +10,11 @@ const userSchema = new mongoose.Schema({
   patientNumber: String,
   nextOfKin: String,
   nextOfKinName: String,
+  appointmentDate: String,
+  appointmentNotes: String,
+  department_id: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
+
+  gp: String,
 });
 
 const Users = mongoose.model("Users", userSchema);

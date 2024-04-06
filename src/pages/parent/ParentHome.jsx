@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav";
 import { BiPlusMedical } from "react-icons/bi";
 import { GiMedicines } from "react-icons/gi";
@@ -8,16 +8,21 @@ import HorizontalCard from "../components/HorizontalCard";
 import DrCard from "../components/DrCard";
 import HistoryCard from "../components/HistoryCard";
 import Title from "../components/Title";
+import axios from "axios";
+import UserInfo from "../components/UserInfo";
 
 const ParentHome = () => {
+  const user = UserInfo();
+  console.log(user);
+
   return (
     <>
       <Nav />
       <div className="wrapper max-w-[685px] mx-auto">
         <Title
-          name="Jane"
+          name={`${user.forename}`}
           appointment="You have an appointment with Dr Bloggs in Radiology on"
-          date=" 12 Feb 2024"
+          date={`${user.appointmentDate}`}
         />
 
         <div className="home_card_container bg-gray-100 p-3 my-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
