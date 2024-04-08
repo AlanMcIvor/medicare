@@ -1,9 +1,9 @@
-// UserInformation.js
 import { useState, useEffect } from "react";
 import axios from "axios";
 
 const UserInfo = () => {
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -12,11 +12,13 @@ const UserInfo = () => {
           console.error("No token found");
           return;
         }
+
         const response = await axios.get("http://localhost:5000/api/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+
         if (response && response.data) {
           setUser(response.data);
         } else {

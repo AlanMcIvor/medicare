@@ -46,6 +46,8 @@ const User = mongoose.model("User", {
   patientNumber: String,
   nextOfKin: String,
   nextOfKinName: String,
+  appointmentDate: String,
+  appoitmentNotes: String,
 });
 
 const Department = mongoose.model("Department", {
@@ -94,9 +96,15 @@ app.get("/api/users", async (req, res) => {
         surname: user.surname,
         department: user.department,
         dob: user.dob,
+        doctor: user.doctor,
         patientNumber: user.patientNumber,
-        appointmentDate: user.appointmentDate,
-        appointmentNotes: user.appointmentNotes,
+        appointmentDate: user.appointmentDate
+          ? new Date(user.appointmentDate).toLocaleDateString("en-EN", {
+              day: "numeric",
+              month: "short",
+              year: "numeric",
+            })
+          : null,
         department_id: user.department_id
           ? {
               consultant: user.department_id.consultant,

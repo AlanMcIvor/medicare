@@ -8,6 +8,7 @@ const userSchema = new mongoose.Schema({
   password: String,
   dob: Date,
   patientNumber: String,
+  doctor: String,
   nextOfKin: String,
   nextOfKinName: String,
   appointmentDate: String,
