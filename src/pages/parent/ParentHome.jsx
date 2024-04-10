@@ -24,7 +24,7 @@ const ParentHome = () => {
       <div className="wrapper max-w-[685px] mx-auto">
         <Title
           name={`${user.forename}`}
-          appointment="Your child has an appointment with Dr Bloggs in Radiology on"
+          appointment={`Your child has an appointment with Dr ${user.doctor} on the`}
           date={` ${user.appointmentDate}`}
         />
 

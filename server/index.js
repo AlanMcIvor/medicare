@@ -96,8 +96,10 @@ app.get("/api/users", async (req, res) => {
         surname: user.surname,
         department: user.department,
         dob: user.dob,
-        doctor: user.doctor,
+        nextOfKin: user.nextOfKin,
+        nextOfKinName: user.nextOfKinName,
         patientNumber: user.patientNumber,
+        appointmentNotes: user.appointmentNotes,
         appointmentDate: user.appointmentDate
           ? new Date(user.appointmentDate).toLocaleDateString("en-EN", {
               day: "numeric",
@@ -105,6 +107,7 @@ app.get("/api/users", async (req, res) => {
               year: "numeric",
             })
           : null,
+        doctor: user.doctor,
         department_id: user.department_id
           ? {
               consultant: user.department_id.consultant,

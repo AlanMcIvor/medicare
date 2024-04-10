@@ -8,14 +8,12 @@ const userSchema = new mongoose.Schema({
   password: String,
   dob: Date,
   patientNumber: String,
-  doctor: String,
   nextOfKin: String,
   nextOfKinName: String,
+  doctor: String,
   appointmentDate: String,
   appointmentNotes: String,
   department_id: { type: mongoose.Schema.Types.ObjectId, ref: "Department" },
-
-  gp: String,
 });
 
 const Users = mongoose.model("Users", userSchema);
