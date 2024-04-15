@@ -46,40 +46,41 @@ const PatientHome = () => {
           imgAlt="An illustration of three children with their xrays"
         />
 
+
         <h2 className="text-center mt-10 text-[30px] font-body">
           Check out some of our free games
         </h2>
 
-        <div className="games my-5 grid grid-cols-3 gap-5">
+        <div className="games my-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/hey-duggee-the-picnic-badge-game">
-              <img src="../assets/game-1.png" alt="" />
+              <img src="../assets/game-1.png" target="_blank" alt="" />
             </a>
           </div>
 
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/danger-mouse-danger-dash">
-              <img src="../assets/game-2.png" alt="" />
+              <img src="../assets/game-2.png" target="_blank" alt="" />
             </a>
           </div>
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/my-world-kitchen-game?collection=free-cbeebies-games-for-kids">
-              <img src="../assets/game-3.png" alt="" />
+              <img src="../assets/game-3.png" target="_blank" alt="" />
             </a>
           </div>
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/swashbuckle-my-swashbuckle-adventure?collection=free-cbeebies-games-for-kids">
-              <img src="../assets/game-4.png" alt="" />
+              <img src="../assets/game-4.png" target="_blank" alt="" />
             </a>
           </div>
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/waffle-and-friends-game?collection=free-cbeebies-games-for-kids">
-              <img src="../assets/game-5.png" alt="" />
+              <img src="../assets/game-5.png" target="_blank" alt="" />
             </a>
           </div>
           <div className="game_card hover:translate-y-1 transition-transform shadow-lg">
             <a href="https://www.bbc.co.uk/cbeebies/games/go-jetters-hero-academy?collection=free-cbeebies-games-for-kids">
-              <img src="../assets/game-6.png" alt="" />
+              <img src="../assets/game-6.png" target="_blank" alt="" />
             </a>
           </div>
         </div>

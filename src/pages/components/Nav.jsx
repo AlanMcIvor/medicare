@@ -9,7 +9,7 @@ const Nav = () => {
         <Link to="/Profile">
           <div className="nav_profile">
             <div className="nav_location text-[#1C3925] text-[18px]">
-              Glasgow Childrens Hospital
+              Glasgow childrens Hospital
             </div>
             <div className="nav_profile_details flex gap-5">
               <p className="pro_name text-[18px]">Jane Doe</p>

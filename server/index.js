@@ -48,12 +48,16 @@ const User = mongoose.model("User", {
   nextOfKinName: String,
   appointmentDate: String,
   appoitmentNotes: String,
+  doctor: String,
+  user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 });
 
 const Department = mongoose.model("Department", {
   consultant: String,
   details: String,
   department: String,
+  department_id: { type: mongoose.Schema.Types.ObjectId, ref: "Department" }
+
 });
 
 app.get("/department", async (req, res) => {
@@ -83,7 +87,7 @@ app.get("/api/users", async (req, res) => {
       }
 
       // The decoded.userId should match the structure used in jwt.sign during login
-      const user = await User.findById(decoded.userId);
+      const user = await User.findById(decoded.userId)//.populate('department_id');
 
       if (!user) {
         return res.status(404).json({ error: "User not found" });
@@ -161,7 +165,6 @@ app.post("/api/login", async (req, res) => {
     // Include is_admin in the token payload
     const tokenPayload = {
       userId: user._id,
-      // is_admin: user.is_admin
     };
 
     const token = jwt.sign(tokenPayload, "your-secret-key", {

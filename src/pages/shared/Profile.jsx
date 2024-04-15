@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Nav from "../components/Nav";
+import UserInfo from "../components/UserInfo";
 
 const Profile = () => {
+  const user = UserInfo();
+  console.log(user);
+
+  // if (!user) {
+  //   return <div className="text-center text-[60px] mx-auto">Loading...</div>;
+  // }
+
   // Function to get the next seven days
   const getNextSevenDays = () => {
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -69,7 +77,7 @@ const Profile = () => {
               <div className="flex flex-col items-start rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Email</p>
                 <p className="text-base font-medium text-black">
-                  janedoe@email.com
+                {`${user.email}`}
                 </p>
               </div>
 
@@ -80,24 +88,24 @@ const Profile = () => {
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Full Name</p>
-                <p className="text-base font-medium text-black">Jane Doe</p>
+                <p className="text-base font-medium text-black">{`${user.forename}`} {`${user.surname}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Date of Birth</p>
-                <p className="text-base font-medium text-black ">01/02/1988</p>
+                <p className="text-base font-medium text-black ">{`${user.dob}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
                 <p className="text-base font-medium text-black">
-                  12345678910114
+                {`${user.phone}`}
                 </p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
-                <p className="text-sm text-gray-600">Allergies</p>
-                <p className="text-base font-medium text-black ">None</p>
+                <p className="text-sm text-gray-600">Notes</p>
+                <p className="text-base font-medium text-black ">{`${user.appointmentNotes}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
@@ -121,15 +129,15 @@ const Profile = () => {
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Next of Kin Name</p>
-                <p className="text-base font-medium text-black ">Robert Doe</p>
+                <p className="text-base font-medium text-black ">{`${user.nextOfKinName}`}</p>
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Relationship</p>
-                <p className="text-base font-medium text-black ">Father</p>
+                <p className="text-base font-medium text-black ">{`${user.nextOfKin}`}</p>
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
-                <p className="text-base font-medium text-black ">123456741546</p>
+                <p className="text-base font-medium text-black ">{`${user.phone}`}</p>
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Address</p>

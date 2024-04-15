@@ -26,6 +26,7 @@ const ParentHome = () => {
           name={`${user.forename}`}
           appointment={`Your child has an appointment with Dr ${user.doctor} on the`}
           date={` ${user.appointmentDate}`}
+          dep={`in ${user.department}`}
         />
 
         <div className="home_card_container bg-gray-100 p-3 my-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
