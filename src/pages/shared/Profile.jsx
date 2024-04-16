@@ -6,10 +6,6 @@ const Profile = () => {
   const user = UserInfo();
   console.log(user);
 
-  // if (!user) {
-  //   return <div className="text-center text-[60px] mx-auto">Loading...</div>;
-  // }
-
   // Function to get the next seven days
   const getNextSevenDays = () => {
     const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -44,6 +40,10 @@ const Profile = () => {
     };
   }, []);
 
+  if (!user) {
+    return <div className="text-center text-[60px] mx-auto">Loading...</div>;
+  }
+
   return (
     <>
       <Nav />
@@ -77,7 +77,7 @@ const Profile = () => {
               <div className="flex flex-col items-start rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Email</p>
                 <p className="text-base font-medium text-black">
-                {`${user.email}`}
+                  {`${user.email}`}
                 </p>
               </div>
 
@@ -88,7 +88,9 @@ const Profile = () => {
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Full Name</p>
-                <p className="text-base font-medium text-black">{`${user.forename}`} {`${user.surname}`}</p>
+                <p className="text-base font-medium text-black">
+                  {`${user.forename}`} {`${user.surname}`}
+                </p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
@@ -98,14 +100,12 @@ const Profile = () => {
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
-                <p className="text-base font-medium text-black">
-                {`${user.phone}`}
-                </p>
+                <p className="text-base font-medium text-black">{`${user.number}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Notes</p>
-                <p className="text-base font-medium text-black ">{`${user.appointmentNotes}`}</p>
+                <p className="text-base text-left font-medium text-black ">{`${user.appointmentNotes}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
@@ -137,11 +137,13 @@ const Profile = () => {
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
-                <p className="text-base font-medium text-black ">{`${user.phone}`}</p>
+                <p className="text-base font-medium text-black "></p>
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Address</p>
-                <p className="text-base font-medium text-black ">Same as patient</p>
+                <p className="text-base font-medium text-black ">
+                  Same as patient
+                </p>
               </div>
             </div>
           </div>

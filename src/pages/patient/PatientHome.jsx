@@ -4,17 +4,25 @@ import Title from "../components/Title";
 import Animation from "../components/Animation";
 import Dropdown from "../components/Dropdown";
 import { FaXRay } from "react-icons/fa6";
+import UserInfo from "../components/UserInfo";
 
 const PatientHome = () => {
+  const user = UserInfo();
+  console.log(user);
+
+  if (!user) {
+    return <div className="text-center text-[60px] mx-auto">Loading...</div>;
+  }
   return (
     <>
       <Nav />
       <div className="wrapper max-w-[685px] mx-auto">
         <div className="patient_title_name">
           <Title
-            name="Jane"
-            appointment="You have an appointment with Dr Bloggs in Radiology on"
-            date=" 12 Feb 2024"
+            name={`${user.forename}`}
+            appointment={`${user.department_id.consultant}`}
+            date="12 Feb 2024"
+            dep={`${user.department_id.department}`}
           />
         </div>
 
@@ -45,7 +53,6 @@ const PatientHome = () => {
           imgPath="./assets/xray.png"
           imgAlt="An illustration of three children with their xrays"
         />
-
 
         <h2 className="text-center mt-10 text-[30px] font-body">
           Check out some of our free games
