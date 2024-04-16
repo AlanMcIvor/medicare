@@ -4,17 +4,14 @@ const cors = require("cors");
 const allowedOrigins = ["http://localhost:3000"];
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const User = require('./models/User');
+require('./models/Department');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-  })
-);
 app.use(express.json());
+app.use(cors());
 
 app._router.stack.forEach(function (r) {
   if (r.route && r.route.path) {
@@ -35,40 +32,9 @@ mongoose.connection.on("connected", () => {
   console.log("Connected to MongoDB");
 });
 
-// User model
-const User = mongoose.model("User", {
-  forename: String,
-  surname: String,
-  department: String,
-  email: String,
-  password: String,
-  dob: Date,
-  patientNumber: String,
-  nextOfKin: String,
-  nextOfKinName: String,
-  appointmentDate: String,
-  appoitmentNotes: String,
-  doctor: String,
-  user_id: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-});
 
-const Department = mongoose.model("Department", {
-  consultant: String,
-  details: String,
-  department: String,
-  department_id: { type: mongoose.Schema.Types.ObjectId, ref: "Department" }
 
-});
 
-app.get("/department", async (req, res) => {
-  try {
-    const departments = await Department.find();
-    res.json(departments);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
 // ...
 
 app.get("/api/users", async (req, res) => {
@@ -87,7 +53,7 @@ app.get("/api/users", async (req, res) => {
       }
 
       // The decoded.userId should match the structure used in jwt.sign during login
-      const user = await User.findById(decoded.userId)//.populate('department_id');
+      const user = await User.findById(decoded.userId).populate('department_id');
 
       if (!user) {
         return res.status(404).json({ error: "User not found" });
