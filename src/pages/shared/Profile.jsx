@@ -83,7 +83,7 @@ const Profile = () => {
 
               <div className="flex flex-col items-start rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Gender</p>
-                <p className="text-base font-medium text-black">Female</p>
+                <p className="text-base font-medium text-black">{`${user.gender}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
@@ -100,7 +100,7 @@ const Profile = () => {
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
-                <p className="text-base font-medium text-black">{`${user.number}`}</p>
+                <p className="text-base font-medium text-black">{`${user.patientPhone}`}</p>
               </div>
 
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
@@ -111,9 +111,7 @@ const Profile = () => {
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Address</p>
                 <p className="text-base font-medium text-black text-left ">
-                  123 Street <br />
-                  City <br />
-                  postcode
+                {`${user.patientAddress}`}
                 </p>
               </div>
 
@@ -122,7 +120,7 @@ const Profile = () => {
                 <p className="text-base font-medium text-black ">
                   <img
                     className="max-h-[100px]"
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    src={`${user.profileImg}`}
                     alt=""
                   />
                 </p>
@@ -137,12 +135,12 @@ const Profile = () => {
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Phone Number</p>
-                <p className="text-base font-medium text-black "></p>
+                <p className="text-base font-medium text-black ">{`${user.nextOfKinNumber}`}</p>
               </div>
               <div className="flex flex-col items-start  rounded-2xl bg-white bg-clip-border px-3 py-4 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
                 <p className="text-sm text-gray-600">Address</p>
                 <p className="text-base font-medium text-black ">
-                  Same as patient
+                {`${user.nextOfKinAddress}`}
                 </p>
               </div>
             </div>
