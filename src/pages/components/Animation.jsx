@@ -34,7 +34,7 @@ const Animation = () => {
             alt=""
           />
           <div class="absolute top-10 right-2 px-3.5 py-2 bg-gray-100 rounded-3xl rounded-tl-none justify-start items-center gap-3 inline-flex opacity-0 group-hover:opacity-100 transition-opacity ease-in delay-500">
-            3. Get your x-ray
+            3. Get your treatment
           </div>
         </div>
       </div>

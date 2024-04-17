@@ -47,7 +47,7 @@ const ParentHome = () => {
           />
           <HorizontalCard
             icon={<FiMessageSquare size={50} color="white" />}
-            heading="Messages"
+            heading="Profile"
             destination="/Profile"
           />
         </div>

@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import Animation from "../components/Animation";
 import Dropdown from "../components/Dropdown";
 import { FaXRay } from "react-icons/fa6";
+import { MdPermScanWifi } from "react-icons/md";
 import UserInfo from "../components/UserInfo";
 
 const PatientHome = () => {
@@ -35,24 +36,54 @@ const PatientHome = () => {
           <Animation />
         </div>
 
-        <Dropdown
-          name="A bit about Radiology"
-          icon={<FaXRay size={50} color="white" />}
-          intro="Radiology is the branch of medicine specializing in of the use of tests that take pictures or images of parts of the body to help diagnose and treat disease. The Department of Radiology offers a comprehensive range of diagnostic imaging and interventional radiology services for children and young people up to 16 years of age. Our department performs approximately 56,800 imaging procedures every year."
-          subtitle="Why is Radiology important?"
-          aside="Every sector within health care relies on radiology, including:"
-          listItems={[
-            "Surgery",
-            "Peadeatrics",
-            "Obsterics",
-            "Oncology",
-            "Trauma-response",
-            "Emergency Medicine",
-            "Infectious Diseases",
-          ]}
-          imgPath="./assets/xray.png"
-          imgAlt="An illustration of three children with their xrays"
-        />
+
+        <div>
+            {/* if({`${user.department_id.department}`} === "Radiology"){
+              
+            } */}
+            {user.department_id.department == "Radiology" ? (
+              <div>
+              <Dropdown
+                name="A bit about Radiology"
+                icon={<FaXRay size={50} color="white" />}
+                intro="Radiology is the branch of medicine specializing in of the use of tests that take pictures or images of parts of the body to help diagnose and treat disease. The Department of Radiology offers a comprehensive range of diagnostic imaging and interventional radiology services for children and young people up to 16 years of age. Our department performs approximately 56,800 imaging procedures every year."
+                subtitle="Why is Radiology important?"
+                aside="Every sector within health care relies on radiology, including:"
+                listItems={[
+                  "Surgery",
+                  "Peadeatrics",
+                  "Obsterics",
+                  "Oncology",
+                  "Trauma-response",
+                  "Emergency Medicine",
+                  "Infectious Diseases",
+                ]}
+                imgPath="./assets/xray.png"
+                imgAlt="An illustration of three children with their xrays"
+              /></div>
+            ) : (
+              <div> <Dropdown
+              name="MRI"
+              icon={<MdPermScanWifi size={50} color="white" />}
+              intro="MRI stands for Magnetic Resonance Imaging. It's a medical imaging technique that uses powerful magnets, radio waves, and a computer to generate detailed images of the inside of the body. Here's how it works:"
+              subtitle="What is an MRI?"
+              imgPath="./assets/mri.jpg"
+              imgAlt="An image of a person getting an MRI scan"
+              aside="MRI works by using the following techologies: "
+              listItems={[
+                "Strong Magnetic field",
+                "Alignment of Hydrogen Nuclei",
+                "Radio Frequency Pulse",
+                "Absorption and Emission of Energy",
+                "Signal Detection",
+                "Image Reconstruction",
+                "Image Visulization",
+              ]}
+            /></div>
+
+            )
+          }
+        </div>
 
         <h2 className="text-center mt-10 text-[30px] font-body">
           Check out some of our free games
